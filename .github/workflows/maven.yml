@@ -40,3 +40,14 @@ jobs:
       with:
         name: Package_artifact
         path: staging
+  
+  ZAP_CI_Scan:
+    runs-on: ubuntu-latest  
+    needs: publish-job
+    steps:
+    - name: Checkout code
+    - uses: actions/checkout@v3
+    - name: Log current directory
+      run: echo ${pwd}
+    - name: Pull ZAP OWASP Docker Image
+      run: docker pull owasp/zap2docker-weekly 
